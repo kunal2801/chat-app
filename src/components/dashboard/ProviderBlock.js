@@ -6,10 +6,16 @@ import { auth } from '../../misc/firebase';
 
 const ProviderBlock = () => {
   const [isConnected, setIsConnected] = useState({
-    'google.com': auth.currentUser.providerData.some(
+    // 'google.com': auth.currentUser.providerData.some(
+    //   data => data.providerId === 'google.com'
+    // ),
+    'google.com': auth.currentUser?.providerData?.some(
       data => data.providerId === 'google.com'
     ),
-    'facebook.com': auth.currentUser.providerData.some(
+    // 'facebook.com': auth.currentUser.providerData.some(
+    //   data => data.providerId === 'facebook.com'
+    // ),
+    'facebook.com': auth.currentUser?.providerData?.some(
       data => data.providerId === 'facebook.com'
     ),
   });
