@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import { auth, database, messaging } from '../misc/firebase';
+import { auth, database, fcmVapidKey, messaging } from '../misc/firebase';
 
 export const isOfflineForDatabase = {
   state: 'offline',
@@ -54,7 +54,7 @@ export const ProfileProvider = ({ children }) => {
         if (messaging) {
           try {
             const currentToken = await messaging.getToken({
-              vapidKey: '<YOUR_PUBLIC_VAPID_KEY_HERE>',
+              vapidKey: fcmVapidKey,
             });
             if (currentToken) {
               await database
@@ -72,6 +72,7 @@ export const ProfileProvider = ({ children }) => {
         if (userStatusRef) {
           userStatusRef.off();
         }
+
         database.ref('.info/connected').off();
         setProfile(null);
         setIsLoading(false);
@@ -83,6 +84,7 @@ export const ProfileProvider = ({ children }) => {
       if (userRef) {
         userRef.off();
       }
+
       if (userStatusRef) {
         userStatusRef.off();
       }
