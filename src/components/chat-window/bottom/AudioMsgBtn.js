@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { ReactMic } from 'react-mic';
-import { useParams } from 'react-router';
+
 import { Alert, Icon, InputGroup } from 'rsuite';
 import { storage } from '../../../misc/firebase';
 
 const AudioMsgBtn = ({ afterUpload }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const { chatId } = useParams();
+  const { chatId } = window;
   const onClick = useCallback(() => {
     setIsRecording(p => !p);
   }, []);

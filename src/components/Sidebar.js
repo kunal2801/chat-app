@@ -18,7 +18,9 @@ const Sidebar = () => {
       <div ref={topSidebarRef}>
         <DashboardToggle />
         <CreateRoomBtnModal />
-        <Divider>Join Conversation</Divider>
+        <Divider style={{ margin: 0, padding: '30px 0' }}>
+          Join conversation
+        </Divider>
       </div>
       <ChatRoomList AboveElHeight={height} />
     </div>

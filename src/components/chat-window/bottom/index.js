@@ -64,13 +64,13 @@ const Bottom = () => {
       setIsLoading(true);
       const updates = {};
       files.forEach(file => {
-        const msgData = assembleMessage(profile, chatId);
+        const msgData = assembleMessage(profile, window.chatId);
         msgData.file = file;
         const messageId = database.ref('messages').push().key;
         updates[`/messages/${messageId}`] = msgData;
       });
       const lastMesgId = Object.keys(updates).pop();
-      updates[`/rooms/${chatId}/lastMessage`] = {
+      updates[`/rooms/${window.chatId}/lastMessage`] = {
         ...updates[lastMesgId],
         msgId: lastMesgId,
       };
@@ -82,7 +82,7 @@ const Bottom = () => {
         Alert.error(err.message, 4000);
       }
     },
-    [chatId, profile]
+    [profile]
   );
   return (
     <div>
